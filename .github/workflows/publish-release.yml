@@ -8,7 +8,7 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 env:
-  SOLUTION: "Mtd.Stopwatch.sln"
+  SOLUTION: "Mtd.Stopwatch.slnx"
   OUTPUT: "nupkgs"
   TAG_NAME: ${{ github.event.release.tag_name }}
   NUGET_URL: "https://nuget.pkg.github.com/cumtd/index.json"
