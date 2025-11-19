@@ -30,6 +30,6 @@ jobs:
           MtdGithubAccessToken: ${{ secrets.GITHUB_TOKEN }}
         run: dotnet restore $PROJECT.slnx
       - name: Build
-        run: dotnet build --no-restore $PROJECT.sln
+        run: dotnet build --no-restore $PROJECT.slnx
       - name: Test
         run: dotnet test --no-build --verbosity normal
