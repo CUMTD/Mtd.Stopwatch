@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/.github/">
+    <File Path=".github/dependabot.yml" />
+  </Folder>
+  <Folder Name="/.github/workflows/">
+    <File Path=".github/workflows/build-test.yml" />
+    <File Path=".github/workflows/publish-release.yml" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="icon.png" />
+    <File Path="nuget.config" />
+    <File Path="readme.md" />
+  </Folder>
+  <Project Path="Mtd.Stopwatch.Core/Mtd.Stopwatch.Core.csproj" />
+  <Project Path="Mtd.Stopwatch.Infrastructure.EfCore.Bulk/Mtd.Stopwatch.Infrastructure.EfCore.Bulk.csproj" />
+  <Project Path="Mtd.Stopwatch.Infrastructure.EfCore/Mtd.Stopwatch.Infrastructure.EfCore.csproj" />
+</Solution>

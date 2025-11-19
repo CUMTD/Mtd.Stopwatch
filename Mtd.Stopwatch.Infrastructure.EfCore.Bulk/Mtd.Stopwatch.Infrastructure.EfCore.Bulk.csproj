@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<!-- Mtd.Stopwatch.Infrastructure.EfCore.Bulk -->
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageId>Mtd.Stopwatch.Infrastructure.EfCore.Bulk</PackageId>
+		<Description>Bulk operation repository implementations for interacting with MTD's Stopwatch entites via EFCore.</Description>
+		<PackageTags>mtd;stopwatch;efcore;bulk;library;repositories</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="EFCore.BulkExtensions.Core" />
+		<PackageReference Include="Mtd.Infrastructure.EFCore.Bulk" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Mtd.Stopwatch.Core\Mtd.Stopwatch.Core.csproj" />
+		<ProjectReference Include="..\Mtd.Stopwatch.Infrastructure.EfCore\Mtd.Stopwatch.Infrastructure.EfCore.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\icon.png" Pack="true" PackagePath="\" />
+		<None Include=".\readme.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+</Project>

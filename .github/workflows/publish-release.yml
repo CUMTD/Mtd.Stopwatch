@@ -1,0 +1,68 @@
+name: Publish Release
+
+on:
+  release:
+    types: [created]
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+env:
+  SOLUTION: "Mtd.Stopwatch.sln"
+  OUTPUT: "nupkgs"
+  TAG_NAME: ${{ github.event.release.tag_name }}
+  NUGET_URL: "https://nuget.pkg.github.com/cumtd/index.json"
+
+jobs:
+  build-pack-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    env:
+      MtdGithubUserName: CUMTD
+      MtdGithubAccessToken: ${{ secrets.GITHUB_TOKEN }}
+
+    strategy:
+      matrix:
+        package:
+          - id: Mtd.Stopwatch.Core
+            path: Mtd.Stopwatch.Core/Mtd.Stopwatch.Core.csproj
+            description: "Core library including entity and repository definitions for MTD's Stopwatch (passenger info) data."
+          - id: Mtd.Stopwatch.Infrastructure.EfCore
+            path: Mtd.Stopwatch.Infrastructure.EfCore/Mtd.Stopwatch.Infrastructure.EfCore.csproj
+            description: "Library for interacting with MTD's Stopwatch entities using Entity Framework Core."
+          - id: Mtd.Stopwatch.Infrastructure.EfCore.Bulk
+            path: Mtd.Stopwatch.Infrastructure.EfCore.Bulk/Mtd.Stopwatch.Infrastructure.EfCore.Bulk.csproj
+            description: "Bulk operation repository implementations for interacting with MTD's Stopwatch entities via EFCore."
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Set VERSION variable from tag
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+
+      - name: Restore solution
+        run: dotnet restore -p:Version=$VERSION "$SOLUTION"
+
+      - name: Pack ${{ matrix.package.id }}
+        run: |
+          mkdir -p "$OUTPUT"
+          dotnet pack "${{ matrix.package.path }}" \
+            -c Release \
+            --no-restore \
+            -p:Version=$VERSION \
+            -p:PackageVersion=$VERSION \
+            -o "$OUTPUT"
+
+      - name: Publish ${{ matrix.package.id }} to GitHub Packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          dotnet nuget push "$OUTPUT/${{ matrix.package.id }}.$VERSION.nupkg"  --source "$NUGET_URL" --api-key "${GITHUB_TOKEN}" --skip-duplicate
+          dotnet nuget push "$OUTPUT/${{ matrix.package.id }}.$VERSION.snupkg" --source "$NUGET_URL" --api-key "${GITHUB_TOKEN}" --skip-duplicate
