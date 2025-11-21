@@ -9,4 +9,6 @@ public interface IPublicRouteGroupRepository<T_Collection> : IAsyncReadable<Publ
 	Task<T_Collection> GetAllWithPublicRoutesAsync(CancellationToken cancellationToken, bool includeDirections = false, bool includeDaytypes = false, bool includeRoutes = false);
 
 	Task<PublicRouteGroup> GetByIdentityWithPublicRoutesAsync(string identity, CancellationToken cancellationToken, bool includeDirections = false, bool includeDaytype = false, bool includeRoutes = false);
+
+	Task<ILookup<PublicRouteGroup, PublicRoute>> GetPublicRoutesForStopIdAsync(string stopId, CancellationToken cancellationToken);
 }

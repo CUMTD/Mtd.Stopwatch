@@ -24,21 +24,4 @@ public class StopTimeRepository(StopwatchContext context)
 			.ConfigureAwait(false);
 		return result;
 	}
-
-	public async Task<IReadOnlyCollection<PublicRouteGroup>> GetPublicRouteGroupsByStopId(string stopId, CancellationToken cancellationToken)
-	{
-		var publicRouteGroups = await _dbSet
-			.Where(st => st.StopId == stopId)
-			.Where(st => st.Trip != null &&
-						 st.Trip.Route != null &&
-						 st.Trip.Route.PublicRoute != null &&
-						 st.Trip.Route.PublicRoute.PublicRouteGroup != null)
-			.Select(st => st.Trip!.Route!.PublicRoute!.PublicRouteGroup!)
-			.Include(prg => prg.Direction)
-			.Distinct()
-			.ToListAsync(cancellationToken)
-			.ConfigureAwait(false);
-
-		return publicRouteGroups!;
-	}
 }
