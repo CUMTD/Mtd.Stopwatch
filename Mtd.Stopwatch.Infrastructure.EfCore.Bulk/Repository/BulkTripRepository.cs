@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-
 using Mtd.Infrastructure.EFCore.Bulk.Repository;
 using Mtd.Stopwatch.Core.Entities.Transit;
 using Mtd.Stopwatch.Core.Repositories.Bulk.Transit;
