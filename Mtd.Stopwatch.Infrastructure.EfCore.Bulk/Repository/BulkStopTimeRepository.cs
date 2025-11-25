@@ -1,4 +1,5 @@
 using Mtd.Infrastructure.EFCore.Bulk.Repository;
+using Mtd.Stopwatch.Core.Entities.Schedule;
 using Mtd.Stopwatch.Core.Entities.Transit;
 using Mtd.Stopwatch.Core.Repositories.Bulk.Transit;
 using Mtd.Stopwatch.Core.Repositories.Transit;
@@ -14,4 +15,5 @@ public class BulkStopTimeRepository(IStopTimeRepository<IReadOnlyCollection<Stop
 		_stopTimeRepository.GetByIdentityAsync(tripId, stopSequence, cancellationToken);
 	public Task<StopTime?> GetByIdentityOrDefaultAsync(string tripId, short stopSequence, CancellationToken cancellationToken) =>
 		_stopTimeRepository.GetByIdentityOrDefaultAsync(tripId, stopSequence, cancellationToken);
+	public Task<IReadOnlyCollection<PublicRouteGroup>> GetPublicRouteGroupsByStopId(string stopId, CancellationToken cancellationToken) => throw new NotImplementedException();
 }

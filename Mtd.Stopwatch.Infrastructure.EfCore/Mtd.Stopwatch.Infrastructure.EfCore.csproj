@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- Mtd.Stopwatch.Infrastructure.EfCore -->
-
 	<PropertyGroup>
 		<PackageId>Mtd.Stopwatch.Infrastructure.EfCore</PackageId>	
 		<Description>Library for interacting with MTD's Stopwatch entities using Entity Framework Core. Concrete implementations of repositories defined in Mtd.Stopwatch.Core.</Description>

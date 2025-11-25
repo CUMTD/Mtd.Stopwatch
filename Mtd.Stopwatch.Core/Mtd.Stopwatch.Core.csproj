@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- Mtd.Stopwatch.Core -->
-	
 	<PropertyGroup>
-		<PackageId>Mtd.Stopwatch.Core</PackageId>		
+		<PackageId>Mtd.Stopwatch.Core</PackageId>
 		<Description>Core library including entity and repository definitions for MTD's Stopwatch (passenger info) data.</Description>
 		<PackageTags>mtd;stopwatch;core;library;entities;repositories</PackageTags>
 	</PropertyGroup>
