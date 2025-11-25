@@ -1,6 +1,7 @@
 using Mtd.Core.Entities;
 
 namespace Mtd.Stopwatch.Core.Entities.Api;
+
 public class ApiKey : Entity
 {
 	public string Key { get; init; }
