@@ -67,6 +67,32 @@ public class PublicRouteGroupRepository(StopwatchContext context)
 		}
 
 		return query.SingleAsync(cancellationToken);
+	}
 
+	public async Task<ILookup<PublicRouteGroup, PublicRoute>> GetPublicRoutesForStopIdAsync(string stopId, CancellationToken cancellationToken)
+	{
+		ArgumentException.ThrowIfNullOrEmpty(stopId);
+
+		var stopQuery = stopId.Contains(':') || stopId.Contains('-')
+			? _dbContext
+				.Set<Core.Entities.Transit.ChildStop>()
+				.Where(cs => cs.Id == stopId)
+			: _dbContext
+				.Set<Core.Entities.Transit.ChildStop>()
+				.Where(cs => cs.ParentStopId == stopId);
+
+		var result = await stopQuery
+			.SelectMany(cs => cs.StopTimes)
+			.Select(st => st.Trip)
+			.Select(t => t.Route)
+			.Select(r => r.PublicRoute)
+			.Where(pr => pr != null && pr.Active)
+			.Select(pr => pr!)
+			.Include(pr => pr.PublicRouteGroup)
+			.ThenInclude(prg => prg.Direction)
+			.Include(pr => pr.Daytype)
+			.ToArrayAsync(cancellationToken);
+
+		return result.ToLookup(pr => pr.PublicRouteGroup);
 	}
 }

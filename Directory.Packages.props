@@ -1,14 +1,14 @@
 <Project>
-	<PropertyGroup>
-		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageVersion Include="EFCore.BulkExtensions.Core" Version="9.0.2" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
-		<PackageVersion Include="Mtd.Core" Version="10.0.0" />
-		<PackageVersion Include="Mtd.Infrastructure.EFCore" Version="10.0.0" />
-		<PackageVersion Include="Mtd.Infrastructure.EFCore.Bulk" Version="10.0.0" />
-		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-	</ItemGroup>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="EFCore.BulkExtensions.Core" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
+    <PackageVersion Include="Mtd.Core" Version="10.0.0" />
+    <PackageVersion Include="Mtd.Infrastructure.EFCore" Version="10.1.0" />
+    <PackageVersion Include="Mtd.Infrastructure.EFCore.Bulk" Version="10.1.0" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
 </Project>

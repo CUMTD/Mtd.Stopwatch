@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<!-- Mtd.Stopwatch.Infrastructure.EfCore.Bulk -->
-
 	<PropertyGroup>
 		<PackageId>Mtd.Stopwatch.Infrastructure.EfCore.Bulk</PackageId>
 		<Description>Bulk operation repository implementations for interacting with MTD's Stopwatch entites via EFCore.</Description>
