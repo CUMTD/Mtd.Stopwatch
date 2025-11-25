@@ -1,6 +1,4 @@
-using Microsoft.EntityFrameworkCore;
 using Mtd.Infrastructure.EFCore.Repositories;
-using Mtd.Stopwatch.Core.Entities.Schedule;
 using Mtd.Stopwatch.Core.Entities.Transit;
 using Mtd.Stopwatch.Core.Repositories.Transit;
 
