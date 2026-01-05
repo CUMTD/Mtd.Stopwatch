@@ -21,4 +21,19 @@ public class TripRepository(StopwatchContext context)
 
 		return results.ToImmutableArray();
 	}
+
+	public async Task<IReadOnlyCollection<Trip>> GetTripsForStopIdAsync(string stopId, CancellationToken cancellationToken)
+	{
+		{
+			var results = await Query()
+				.Where(t => t.StopTimes.Any(st => st.StopId == stopId))
+				.Include(t => t.Route)
+				.ThenInclude(r => r.PublicRoute!)
+				.ThenInclude(pr => pr.PublicRouteGroup)
+				.ThenInclude(prg => prg.Direction)
+				.ToArrayAsync(cancellationToken)
+				.ConfigureAwait(false);
+			return results.ToImmutableArray();
+		}
+	}
 }
