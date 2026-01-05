@@ -1,4 +1,4 @@
-﻿using Mtd.Core.Repositories;
+using Mtd.Core.Repositories;
 using Mtd.Stopwatch.Core.Entities.Transit;
 
 namespace Mtd.Stopwatch.Core.Repositories.Transit;
@@ -7,4 +7,6 @@ public interface ITripRepository<T_Collection> : IAsyncReadable<Trip, T_Collecti
 	where T_Collection : IEnumerable<Trip>
 {
 	Task<T_Collection> GetAllWithRoutesAsync(CancellationToken cancellationToken);
+
+	Task<IReadOnlyCollection<Trip>> GetTripsForStopIdAsync(string stopId, CancellationToken cancellationToken);
 }

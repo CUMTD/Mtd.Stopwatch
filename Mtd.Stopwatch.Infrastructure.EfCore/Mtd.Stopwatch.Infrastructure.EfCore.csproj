@@ -4,6 +4,7 @@
 		<PackageId>Mtd.Stopwatch.Infrastructure.EfCore</PackageId>	
 		<Description>Library for interacting with MTD's Stopwatch entities using Entity Framework Core. Concrete implementations of repositories defined in Mtd.Stopwatch.Core.</Description>
 		<PackageTags>mtd;stopwatch;efcore;library;repositories</PackageTags>
+		<Version>$(VersionPrefix)20.0.8</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
