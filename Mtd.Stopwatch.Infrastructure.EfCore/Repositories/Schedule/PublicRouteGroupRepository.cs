@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Mtd.Infrastructure.EFCore.Repositories;
 using Mtd.Stopwatch.Core.Entities.Schedule;
 using Mtd.Stopwatch.Core.Repositories.Schedule;
@@ -7,7 +6,7 @@ using System.Collections.Immutable;
 
 namespace Mtd.Stopwatch.Infrastructure.EFCore.Repositories.Schedule;
 
-public class PublicRouteGroupRepository(StopwatchContext context, ILogger<PublicRouteGroupRepository> logger)
+public class PublicRouteGroupRepository(StopwatchContext context)
 	: AsyncEFIdentifiableRepository<string, PublicRouteGroup>(context), IPublicRouteGroupRepository<IReadOnlyCollection<PublicRouteGroup>>
 {
 	public async Task<IReadOnlyCollection<PublicRouteGroup>> GetAllWithPublicRoutesAsync(CancellationToken cancellationToken)
