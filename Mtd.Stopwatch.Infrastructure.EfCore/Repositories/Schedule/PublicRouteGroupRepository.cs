@@ -74,35 +74,26 @@ public class PublicRouteGroupRepository(StopwatchContext context, ILogger<Public
 	{
 		ArgumentException.ThrowIfNullOrEmpty(stopId);
 
-		var isChildId = stopId.Contains(':') || stopId.Contains('-');
+		var stopQuery = stopId.Contains(':') || stopId.Contains('-')
+			? _dbContext
+				.Set<Core.Entities.Transit.ChildStop>()
+				.Where(cs => cs.Id == stopId)
+			: _dbContext
+				.Set<Core.Entities.Transit.ChildStop>()
+				.Where(cs => cs.ParentStopId == stopId);
 
-		logger.LogWarning("Fetching PublicRoutes for StopId {StopId} (isChildId: {IsChildId})", stopId, isChildId);
-
-		// Root the query in PublicRoute so Include is valid
-		var query = _dbContext
-			.Set<PublicRoute>()
-			.AsQueryable()
-			.Where(pr => pr.Active);
-
-		logger.LogWarning("Results count before stop filter: {Results}", await query.CountAsync(cancellationToken).ConfigureAwait(false));
-
-		query = query
-			.Where(pr => pr
-				.Routes
-				.SelectMany(r => r.Trips)
-				.SelectMany(t => t.StopTimes)
-				.Any(st =>
-						isChildId
-							? st.StopId == stopId
-							: st.StopId.StartsWith(stopId + ":")))
+		var result = await stopQuery
+			.SelectMany(cs => cs.StopTimes)
+			.Select(st => st.Trip)
+			.Select(t => t.Route)
+			.Select(r => r.PublicRoute)
+			.Where(pr => pr != null && pr.Active)
+			.Select(pr => pr!)
 			.Include(pr => pr.PublicRouteGroup)
 			.ThenInclude(prg => prg.Direction)
 			.Include(pr => pr.Daytype)
-			.AsSplitQuery();
+			.ToArrayAsync(cancellationToken);
 
-		var results = await query.ToArrayAsync(cancellationToken).ConfigureAwait(false);
-
-		return results.ToLookup(pr => pr.PublicRouteGroup);
-
+		return result.ToLookup(pr => pr.PublicRouteGroup);
 	}
 }

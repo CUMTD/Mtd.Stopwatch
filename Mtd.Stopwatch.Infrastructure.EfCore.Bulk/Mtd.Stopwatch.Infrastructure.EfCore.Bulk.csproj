@@ -7,18 +7,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EFCore.BulkExtensions.Core" />
 		<PackageReference Include="Mtd.Infrastructure.EFCore.Bulk" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Mtd.Stopwatch.Core\Mtd.Stopwatch.Core.csproj" />
-		<ProjectReference Include="..\Mtd.Stopwatch.Infrastructure.EfCore\Mtd.Stopwatch.Infrastructure.EfCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\icon.png" Pack="true" PackagePath="\" />
 		<None Include="..\readme.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Mtd.Stopwatch.Core\Mtd.Stopwatch.Core.csproj" />
+	  <ProjectReference Include="..\Mtd.Stopwatch.Infrastructure.EfCore\Mtd.Stopwatch.Infrastructure.EfCore.csproj" />
 	</ItemGroup>
 
 </Project>

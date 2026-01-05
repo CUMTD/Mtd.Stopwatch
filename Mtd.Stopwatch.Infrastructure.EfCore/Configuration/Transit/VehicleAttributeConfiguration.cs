@@ -4,10 +4,10 @@ using Mtd.Stopwatch.Core.Entities.Transit;
 
 namespace Mtd.Stopwatch.Infrastructure.EFCore.Configuration.Transit;
 
-	internal class VehicleAttributeConfiguration : IEntityTypeConfiguration<VehicleAttribute>
+internal class VehicleAttributeConfiguration : IEntityTypeConfiguration<VehicleAttribute>
+{
+	public void Configure(EntityTypeBuilder<VehicleAttribute> builder)
 	{
-		public void Configure(EntityTypeBuilder<VehicleAttribute> builder)
-		{
 		builder.ToTable("VehicleAttribute", "transit");
 
 		builder.HasKey(vac => new { vac.VehicleId, vac.Name });
