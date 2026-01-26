@@ -27,7 +27,6 @@ public class TripRepository(StopwatchContext context)
 		{
 			var results = await Query()
 				.Where(t => t.StopTimes.Any(st => st.StopId == stopId))
-				.Include(t => t.Direction)
 				.Include(t => t.Route)
 				.ThenInclude(r => r.PublicRoute!)
 				.ThenInclude(pr => pr.PublicRouteGroup)
