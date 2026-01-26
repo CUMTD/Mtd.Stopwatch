@@ -27,6 +27,16 @@ public class PublicRouteRepository(StopwatchContext context)
 
 		return results.ToImmutableArray();
 	}
+	public async Task<IReadOnlyCollection<PublicRoute>> GetAllWithDayTypesAndRoutesAsync(CancellationToken cancellationToken)
+	{
+		var results = await Query()
+			.Include(pr => pr.Routes)
+			.Include(r => r.Daytype)
+			.ToArrayAsync(cancellationToken);
+
+		return results.ToImmutableArray();
+	}
+
 	public Task<PublicRoute> GetByIdentityWithRouteGroupAsync(string identity, CancellationToken cancellationToken) => Query()
 		.Where(pr => pr.Id == identity)
 		.Include(pr => pr.PublicRouteGroup)
