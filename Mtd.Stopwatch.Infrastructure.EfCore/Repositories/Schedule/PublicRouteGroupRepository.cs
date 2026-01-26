@@ -36,7 +36,9 @@ public class PublicRouteGroupRepository(StopwatchContext context)
 
 		if (includeRoutes)
 		{
-			query = query.Include(prg => prg.PublicRoutes.Select(pr => pr.Routes));
+			query = query
+				.Include(prg => prg.PublicRoutes)
+				.ThenInclude(pr => pr.Routes);
 		}
 
 		var results = await query
@@ -63,7 +65,9 @@ public class PublicRouteGroupRepository(StopwatchContext context)
 
 		if (includeRoutes)
 		{
-			query = query.Include(prg => prg.PublicRoutes.Select(pr => pr.Routes));
+			query = query
+				.Include(prg => prg.PublicRoutes)
+				.ThenInclude(pr => pr.Routes);
 		}
 
 		return query.SingleAsync(cancellationToken);
