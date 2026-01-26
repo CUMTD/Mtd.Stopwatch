@@ -81,13 +81,16 @@ public class PublicRouteGroupRepository(StopwatchContext context)
 				.Set<Core.Entities.Transit.ChildStop>()
 				.Where(cs => cs.ParentStopId == stopId);
 
-		var result = await stopQuery
+		var publicRouteIds = await stopQuery
 			.SelectMany(cs => cs.StopTimes)
-			.Select(st => st.Trip)
-			.Select(t => t.Route)
-			.Select(r => r.PublicRoute)
-			.Where(pr => pr != null && pr.Active)
-			.Select(pr => pr!)
+			.Select(st => st.Trip.Route.PublicRoute!.Id)
+			.Where(prId => prId != null)
+			.Distinct()
+			.ToArrayAsync(cancellationToken);
+
+		var result = await _dbContext
+			.Set<PublicRoute>()
+			.Where(pr => publicRouteIds.Contains(pr.Id) && pr.Active)
 			.Include(pr => pr.PublicRouteGroup)
 			.ThenInclude(prg => prg.Direction)
 			.Include(pr => pr.Daytype)
