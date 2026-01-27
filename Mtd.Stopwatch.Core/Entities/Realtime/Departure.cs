@@ -73,7 +73,7 @@ public partial class Departure : IRealtimeData, IComparable<Departure>
 				return 0;
 			}
 
-			return (int)Math.Floor((EstimatedDeparture.Value - TimeProvider.System.GetLocalNow()).TotalMilliseconds);
+			return (int)Math.Floor((EstimatedDeparture.Value - TimeProvider.System.GetLocalNow()).TotalMinutes);
 
 		}
 	}
