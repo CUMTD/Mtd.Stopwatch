@@ -14,6 +14,7 @@ public class StopwatchContext(DbContextOptions<StopwatchContext> options) : DbCo
 	public DbSet<Direction> Directions { get; protected set; }
 	public DbSet<PublicRoute> PublicRoutes { get; protected set; }
 	public DbSet<PublicRouteGroup> PublicRouteGroups { get; protected set; }
+	public DbSet<ShelterBoard> ShelterBoards { get; protected set; }
 	public DbSet<Agency> Agencies { get; protected set; }
 	public DbSet<CalendarDate> CalendarDates { get; protected set; }
 	public DbSet<Stop> Stops { get; protected set; }
@@ -40,6 +41,7 @@ public class StopwatchContext(DbContextOptions<StopwatchContext> options) : DbCo
 		_ = builder.ApplyConfiguration(new PublicRouteConfiguration());
 		_ = builder.ApplyConfiguration(new PublicRouteGroupConfiguration());
 		_ = builder.ApplyConfiguration(new RerouteConfiguration());
+		_ = builder.ApplyConfiguration(new ShelterBoardConfiguration());
 		_ = builder.ApplyConfiguration(new AgencyConfiguration());
 		_ = builder.ApplyConfiguration(new CalendarDateConfiguration());
 		_ = builder.ApplyConfiguration(new ChildStopConfiguration());
