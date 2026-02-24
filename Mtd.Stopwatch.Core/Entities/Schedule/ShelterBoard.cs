@@ -9,7 +9,7 @@ public class ShelterBoard : GuidEntity
 	public required string StopId { get; set; }
 	public required string Name { get; set; }
 	public required decimal WidthInches { get; set; }
-	public required decimal WidthHeight { get; set; }
+	public required decimal HeightInches { get; set; }
 	public required FrameType FrameType { get; set; }
 	public required ContentType ContentType { get; set; }
 	public string? Notes { get; set; }
@@ -22,12 +22,12 @@ public class ShelterBoard : GuidEntity
 	}
 
 	[SetsRequiredMembers]
-	public ShelterBoard(string stopId, string name, decimal widthInches, decimal widthHeight, FrameType frameType, ContentType contentType) : this()
+	public ShelterBoard(string stopId, string name, decimal widthInches, decimal heightInches, FrameType frameType, ContentType contentType) : this()
 	{
 		StopId = stopId;
 		Name = name;
 		WidthInches = widthInches;
-		WidthHeight = widthHeight;
+		HeightInches = heightInches;
 		FrameType = frameType;
 		ContentType = contentType;
 		Stop = null!;

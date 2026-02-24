@@ -39,8 +39,8 @@ internal class ShelterBoardConfiguration : IEntityTypeConfiguration<ShelterBoard
 			.IsRequired();
 
 		builder
-			.Property(sb => sb.WidthHeight)
-			.HasColumnName("WidthHeight")
+			.Property(sb => sb.HeightInches)
+			.HasColumnName("HeightInches")
 			.HasPrecision(18, 2)
 			.IsRequired();
 
