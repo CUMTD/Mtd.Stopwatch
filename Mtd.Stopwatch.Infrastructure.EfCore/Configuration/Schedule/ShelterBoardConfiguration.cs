@@ -55,6 +55,11 @@ internal class ShelterBoardConfiguration : IEntityTypeConfiguration<ShelterBoard
 			.IsRequired();
 
 		builder
+			.Property(sb => sb.Deleted)
+			.HasColumnName("Deleted")
+			.IsRequired();
+
+		builder
 			.Property(sb => sb.Notes)
 			.HasColumnName("Notes")
 			.HasMaxLength(256)

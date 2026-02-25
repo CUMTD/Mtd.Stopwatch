@@ -12,6 +12,7 @@ public class ShelterBoard : GuidEntity
 	public required decimal HeightInches { get; set; }
 	public required FrameType FrameType { get; set; }
 	public required ContentType ContentType { get; set; }
+	public required bool Deleted { get; set; }
 	public string? Notes { get; set; }
 
 	public virtual required Stop Stop { get; set; }
@@ -22,7 +23,7 @@ public class ShelterBoard : GuidEntity
 	}
 
 	[SetsRequiredMembers]
-	public ShelterBoard(string stopId, string name, decimal widthInches, decimal heightInches, FrameType frameType, ContentType contentType) : this()
+		public ShelterBoard(string stopId, string name, decimal widthInches, decimal heightInches, FrameType frameType, ContentType contentType, bool deleted) : this()
 	{
 		StopId = stopId;
 		Name = name;
@@ -30,6 +31,7 @@ public class ShelterBoard : GuidEntity
 		HeightInches = heightInches;
 		FrameType = frameType;
 		ContentType = contentType;
+		Deleted = deleted;
 		Stop = null!;
 	}
 }
