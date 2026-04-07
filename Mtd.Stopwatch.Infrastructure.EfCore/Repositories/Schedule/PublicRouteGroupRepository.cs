@@ -98,6 +98,7 @@ public class PublicRouteGroupRepository(StopwatchContext context)
 			.Include(pr => pr.PublicRouteGroup)
 			.ThenInclude(prg => prg.Direction)
 			.Include(pr => pr.Daytype)
+			.Include(pr => pr.Routes)
 			.ToArrayAsync(cancellationToken);
 
 		return result.ToLookup(pr => pr.PublicRouteGroup);
