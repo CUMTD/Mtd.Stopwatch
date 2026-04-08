@@ -15,14 +15,8 @@ internal class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
 		builder
 			.Property(vc => vc.Id)
 				.HasColumnName("Id")
-				.HasMaxLength(36)
-				.IsRequired();
-
-		builder
-			.Property(vc => vc.VehicleNumber)
-				.HasColumnName("VehicleNumber")
 				.HasMaxLength(50)
-				.IsRequired(false);
+				.IsRequired();
 
 		builder
 			.Property(vc => vc.VehicleConfigurationId)
