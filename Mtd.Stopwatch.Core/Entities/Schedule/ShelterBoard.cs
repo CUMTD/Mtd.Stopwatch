@@ -15,11 +15,10 @@ public class ShelterBoard : GuidEntity
 	public required bool Deleted { get; set; }
 	public string? Notes { get; set; }
 
-	public virtual required Stop Stop { get; set; }
+	public virtual Stop? Stop { get; set; }
 
 	protected ShelterBoard()
 	{
-		Stop = null!;
 	}
 
 	[SetsRequiredMembers]
@@ -32,6 +31,5 @@ public class ShelterBoard : GuidEntity
 		FrameType = frameType;
 		ContentType = contentType;
 		Deleted = deleted;
-		Stop = null!;
 	}
 }

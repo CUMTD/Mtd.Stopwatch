@@ -69,6 +69,6 @@ internal class ShelterBoardConfiguration : IEntityTypeConfiguration<ShelterBoard
 			.HasOne(sb => sb.Stop)
 			.WithMany()
 			.HasForeignKey(sb => sb.StopId)
-			.IsRequired();
+			.IsRequired(false);
 	}
 }
