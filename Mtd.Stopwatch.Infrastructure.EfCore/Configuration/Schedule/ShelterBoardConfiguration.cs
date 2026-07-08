@@ -60,6 +60,21 @@ internal class ShelterBoardConfiguration : IEntityTypeConfiguration<ShelterBoard
 			.IsRequired();
 
 		builder
+			.Property(sb => sb.Quantity)
+			.HasColumnName("Quantity")
+			.IsRequired();
+
+		builder
+			.Property(sb => sb.Paired)
+			.HasColumnName("Paired")
+			.IsRequired();
+
+		builder
+			.Property(sb => sb.Split)
+			.HasColumnName("Split")
+			.IsRequired();
+
+		builder
 			.Property(sb => sb.Notes)
 			.HasColumnName("Notes")
 			.HasMaxLength(256)

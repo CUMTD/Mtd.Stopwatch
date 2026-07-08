@@ -13,6 +13,9 @@ public class ShelterBoard : GuidEntity
 	public required FrameType FrameType { get; set; }
 	public required ContentType ContentType { get; set; }
 	public required bool Deleted { get; set; }
+	public required byte Quantity { get; set; }
+	public required bool Paired { get; set; }
+	public required bool Split { get; set; }
 	public string? Notes { get; set; }
 
 	public virtual Stop? Stop { get; set; }
@@ -22,7 +25,7 @@ public class ShelterBoard : GuidEntity
 	}
 
 	[SetsRequiredMembers]
-		public ShelterBoard(string stopId, string name, decimal widthInches, decimal heightInches, FrameType frameType, ContentType contentType, bool deleted) : this()
+		public ShelterBoard(string stopId, string name, decimal widthInches, decimal heightInches, FrameType frameType, ContentType contentType, bool deleted, byte quantity, bool paired, bool split) : this()
 	{
 		StopId = stopId;
 		Name = name;
@@ -31,5 +34,8 @@ public class ShelterBoard : GuidEntity
 		FrameType = frameType;
 		ContentType = contentType;
 		Deleted = deleted;
+		Quantity = quantity;
+		Paired = paired;
+		Split = split;
 	}
 }
