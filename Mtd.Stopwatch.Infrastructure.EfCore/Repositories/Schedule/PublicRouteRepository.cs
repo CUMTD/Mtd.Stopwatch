@@ -27,6 +27,18 @@ public class PublicRouteRepository(StopwatchContext context)
 
 		return results.ToImmutableArray();
 	}
+	public async Task<IReadOnlyCollection<PublicRoute>> GetAllWithStopTimesAndDirectionsAsync(CancellationToken cancellationToken)
+	{
+		var results = await Query()
+			.Include(pr => pr.Routes)
+				.ThenInclude(r => r.Trips)
+					.ThenInclude(t => t.StopTimes)
+			.Include(pr => pr.PublicRouteGroup)
+				.ThenInclude(prg => prg.Direction)
+			.ToArrayAsync(cancellationToken);
+
+		return results.ToImmutableArray();
+	}
 	public async Task<IReadOnlyCollection<PublicRoute>> GetAllWithDayTypesAndRoutesAsync(CancellationToken cancellationToken)
 	{
 		var results = await Query()
