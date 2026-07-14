@@ -7,6 +7,7 @@ public interface IPublicRouteRepository<T_Collection> : IAsyncReadable<PublicRou
 	where T_Collection : IEnumerable<PublicRoute>
 {
 	Task<T_Collection> GetAllWithStopTimesAsync(CancellationToken cancellationToken);
+	Task<T_Collection> GetAllWithStopTimesAndDirectionsAsync(CancellationToken cancellationToken);
 	Task<T_Collection> GetAllActiveAsync(CancellationToken cancellationToken);
 	Task<T_Collection> GetAllWithDayTypesAndRoutesAsync(CancellationToken cancellationToken);
 	Task<PublicRoute> GetByIdentityWithRouteGroupAsync(string identity, CancellationToken cancellationToken);
