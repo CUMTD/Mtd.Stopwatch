@@ -8,6 +8,6 @@
 		<PackageVersion Include="Mtd.Core" Version="10.0.0" />
 		<PackageVersion Include="Mtd.Infrastructure.EFCore" Version="10.1.0" />
 		<PackageVersion Include="Mtd.Infrastructure.EFCore.Bulk" Version="10.1.0" />
-		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.401" PrivateAssets="All" />
 	</ItemGroup>
 </Project>
